@@ -1,0 +1,28 @@
+# IDEA #
+*.iml
+*.ipr
+*.iws
+**/.idea
+
+# Myeclipse #
+*.classpath
+*.project
+**/.settings
+**/bin
+
+# Maven #
+**/target
+
+
+# Java  #
+*.class
+.mtj.tmp/
+*.jar
+!docs/jars/*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# bower #
+**/bower_components
+
