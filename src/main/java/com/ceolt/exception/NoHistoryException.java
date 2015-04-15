@@ -18,24 +18,20 @@ public class NoHistoryException extends Exception {
 	private String historyFile;
 	
 	public NoHistoryException() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public NoHistoryException(String message, String historyFile) {
 		super(message);
 		this.historyFile = historyFile;
-		// TODO Auto-generated constructor stub
 	}
 
 	public NoHistoryException(Throwable cause) {
 		super(cause);
-		// TODO Auto-generated constructor stub
 	}
 
 	public NoHistoryException(String message, Throwable cause, String historyFile) {
 		super(message, cause);
 		this.historyFile = historyFile;
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getHistoryFile() {

@@ -4,9 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
+import com.ceolt.dao.IBaseTermDao;
+import com.ceolt.dao.impl.BaseTermDaoFileImpl;
 import com.ceolt.entity.BaseTerm;
 import com.ceolt.entity.Vocabulary;
 import com.ceolt.entity.Word;
@@ -33,10 +34,16 @@ public class Loader {
 			System.out.println(v);
 		}
 		System.out.println("共计词汇："+vocabularies.size());
+
+
+        //写入到对象文件中
+//        dao.saveWords(words);
 	}
 
 	private static final String WORD_FILE = "datas/ce-word.dat";
 	private static final String VOCABULARY_FILE = "datas/ce-vocabulary.dat";
+
+    private static IBaseTermDao dao = new BaseTermDaoFileImpl();
 	
 	/**********************************
 	 * 本方法负责加载 datas/ce-word.dat 文件中的数据，并封装成 Word对象
@@ -131,5 +138,5 @@ public class Loader {
 		
 		return vocabularies;
 	}
-	
+
 }

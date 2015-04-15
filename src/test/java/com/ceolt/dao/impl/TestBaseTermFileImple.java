@@ -11,6 +11,7 @@ import com.ceolt.entity.Vocabulary;
 import com.ceolt.entity.Word;
 import com.ceolt.util.Loader;
 
+@Ignore
 public class TestBaseTermFileImple {
 
 	private IBaseTermDao dao ;

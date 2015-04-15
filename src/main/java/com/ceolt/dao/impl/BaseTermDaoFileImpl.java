@@ -23,7 +23,6 @@ import com.ceolt.entity.Word;
 public class BaseTermDaoFileImpl implements IBaseTermDao {
 
 	public Set<Word> loadWords() {
-		// TODO Auto-generated method stub
 		File wordFile = new File(word_file);
 		if(!wordFile.exists()){
 			System.out.println("单词库文件找不到，请联系管理员提供单词库文件: "+wordFile);
@@ -40,14 +39,12 @@ public class BaseTermDaoFileImpl implements IBaseTermDao {
 			System.out.println("单词文件损坏");
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if(ois != null){
 				try {
 					ois.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -75,14 +72,12 @@ public class BaseTermDaoFileImpl implements IBaseTermDao {
 			System.out.println("词汇文件损坏");
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if(ois != null){
 				try {
 					ois.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -118,7 +113,6 @@ public class BaseTermDaoFileImpl implements IBaseTermDao {
 	 * @param vocabularies　词汇库
 	 */
 	public void saveVocabularies(Set<Vocabulary> vocabularies) {
-		// TODO Auto-generated method stub
 		ObjectOutputStream oos = null;
 		File vocabularyFile = new File(vocabulary_file);
 		try {

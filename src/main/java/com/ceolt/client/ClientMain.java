@@ -12,10 +12,10 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.ceolt.biz.IBroswerBiz;
+import com.ceolt.biz.IBrowserBiz;
 import com.ceolt.biz.IGameBiz;
 import com.ceolt.biz.ITestingBiz;
-import com.ceolt.biz.impl.BroswerBizImpl;
+import com.ceolt.biz.impl.BrowserBizImpl;
 import com.ceolt.biz.impl.GameBizImpl;
 import com.ceolt.biz.impl.TestingBizImpl;
 import com.ceolt.entity.BaseTerm;
@@ -24,6 +24,7 @@ import com.ceolt.entity.Vocabulary;
 import com.ceolt.entity.Word;
 import com.ceolt.exception.NoHistoryException;
 import com.ceolt.exception.NoTestRecordException;
+import com.ceolt.util.DBConfig;
 import com.ceolt.util.DateUtil;
 import com.ceolt.util.PageBean;
 import com.ceolt.util.StringUtil;
@@ -31,12 +32,22 @@ import com.ceolt.util.StringUtil;
 public class ClientMain {
 
 	/** 每页显示记录的个数 */
-	private static final int PAGE_SIZE = 10;
-	
+	private static int PAGE_SIZE = 10;
+
+    //通过静态代码块来加载配置信息
+    static{
+        String pageSize = DBConfig.getInstance().getValue("page.size");
+        if(pageSize != null){
+            PAGE_SIZE = Integer.parseInt(pageSize);
+        }
+        //加载其它的配置[如果将来有的话]
+        //....
+    }
+
 	private ClientUI ui;
 	
 	//业务对象
-	private IBroswerBiz broswerBiz;
+	private IBrowserBiz browserBiz;
 	private IGameBiz gameBiz;
 	private ITestingBiz testingBiz;
 	
@@ -49,7 +60,7 @@ public class ClientMain {
 		//初始化界面对象
 		this.ui = ClientUI.getUI();
 		//初始化业务对象
-		this.broswerBiz = new BroswerBizImpl();
+		this.browserBiz = new BrowserBizImpl();
 		this.gameBiz = new GameBizImpl();
 		this.testingBiz = new TestingBizImpl();
 	}
@@ -102,10 +113,11 @@ public class ClientMain {
 		try {
 			br = new BufferedReader(new InputStreamReader(System.in));
 			String result = br.readLine();
+            result = result.trim(); //去除空白字符
 //			result = new String(result.getBytes("GBK"),"UTF-8");
 			return result;
 		} catch (IOException e) {
-			System.out.println("输出有错..");
+			System.out.println("输入有错..");
 			return inputString();
 		}
 	}
@@ -137,7 +149,7 @@ public class ClientMain {
 //							System.out.println("你选择了 浏览单词");
 //							System.out.println("\n\n\n");
 							//把所有单词的首字母及单词个数打印出来
-							Map<Character, Set<Word>> firstMap = broswerBiz.getFirstMap();
+							Map<Character, Set<Word>> firstMap = browserBiz.getFirstMap();
 							Set<Character> keySet = firstMap.keySet();
 						
 							for(Character first : keySet){
@@ -175,7 +187,7 @@ public class ClientMain {
 						case 2:
 //							System.out.println("你选择了 浏览词汇");
 //							System.out.println("\n\n\n");
-							Set<Vocabulary> vsSet = broswerBiz.getAllVocabularies();
+							Set<Vocabulary> vsSet = browserBiz.getAllVocabularies();
 							//本功能需要使用分页显示，故创建PageBean
 							PageBean pb = new PageBean(PAGE_SIZE, vsSet);
 							//通过PageBean获取相关的信息
@@ -369,7 +381,6 @@ public class ClientMain {
 	 * 则表示是由 cn2en　的业务来的请求，则写入到　cn2en　的历史文件中
 	 */
 	private void onGame(Map<String, String> map, boolean flag) {
-		// TODO Auto-generated method stub
 		//定义变量，保存本次玩的结果
 		int count = 0; //记录本次玩了多少个题目　
 		double correct = 0 ; //记录本次答对的题目个数
@@ -401,7 +412,7 @@ public class ClientMain {
 			count ++; //
 			
 			//判断　用户是否答对
-			if(isRight(answer, StringUtil.toStringArray(value))) {
+			if(isRight(answer, StringUtil.toStringArray(value),flag)) {
 				//回答正确
 				correct ++;
 				System.out.printf("√ 回答正确, 完整解释是：【%s】\n", value);
@@ -476,7 +487,7 @@ public class ClientMain {
 			//判断　用户回答是否正确
 			String[] cn = bt.getCn();
 			//判断　用户是否答对
-			if(isRight(answer, bt.getCn())) {
+			if(isRight(answer, bt.getCn(),true)) {
 				//回答正确
 				correct ++;
 				System.out.printf("√ 回答正确, 完整解释是：【%s】\n", StringUtil.toString(cn));
@@ -525,18 +536,29 @@ public class ClientMain {
 	 * 判断 answer是否存在于 数组中
 	 * @param answer 答案
 	 * @param valueArr 数组
+     * @param flag 区别中英文对互译的标志
 	 * @return
 	 */
-	private boolean isRight(String answer, String[] valueArr) {
-		// TODO Auto-generated method stub
+	private boolean isRight(String answer, String[] valueArr,boolean flag) {
 		boolean result = false;
-		for(int i=0;i<valueArr.length;i++) {
-			//只要回答的值与原始中的解释有任一一个匹配，都算正确
-//			System.out.println(answer+"=>"+valueArr[i]);
-			if(answer.equalsIgnoreCase(valueArr[i])) {
-				return true;
-			}
-		}
+        //只要回答的值与原始中的解释有任一一个匹配，都算正确
+        if(flag){
+            //提示英文,回答中文, 可以模糊匹配, 比如: 原意是: 很好的, 我们答了: 好的.  也将算为正确
+            for(int i=0;i<valueArr.length;i++) {
+               //
+                if(valueArr[i].contains(answer)){
+                    return true;
+                }
+            }
+        }else{
+            //提示中文,回答英文,需要完全一样
+            for(int i=0;i<valueArr.length;i++) {
+                if (answer.equalsIgnoreCase(valueArr[i])) {
+                    return true;
+                }
+            }
+        }
+
 		return result;
 	}
 

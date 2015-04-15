@@ -42,7 +42,6 @@ public class TestingBizImpl implements ITestingBiz {
 	 * @param capacity 数据量
 	 */
 	public List<BaseTerm> getTestingData(int capacity) {
-		// TODO Auto-generated method stub
 		List<BaseTerm> allDatas = new ArrayList<BaseTerm>();
 		//1.取出所有的 Word
 		Set<Word> words = dao.loadWords();
@@ -83,7 +82,6 @@ public class TestingBizImpl implements ITestingBiz {
 	 * @param record
 	 */
 	public void saveTestRecord(TestRecord record) {
-		// TODO Auto-generated method stub
 		File dir = new File(TESTING_DIR);
 		if(!dir.exists()) {
 			dir.mkdir(); //创建此目录
@@ -127,7 +125,6 @@ public class TestingBizImpl implements ITestingBiz {
 	 * @throws NoTestRecordException 如果没有此编号，则抛出此异常
 	 */
 	public List<TestRecord> reviewTestRecord() throws NoTestRecordException {
-		// TODO Auto-generated method stub
 		File dir = new File(TESTING_DIR);
 		if(!dir.exists()) {
 			dir.mkdir(); //创建此目录

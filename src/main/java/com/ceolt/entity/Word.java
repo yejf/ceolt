@@ -19,7 +19,6 @@ public class Word extends BaseTerm {
 
 	public Word() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Word(long id, String en, String[] cn) {

@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.ceolt.biz.IGameBiz;
@@ -28,7 +29,6 @@ public class TestGameBizImpl {
 	}
 
 	private void iterateMap(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		System.out.println("总量：　"+map.size());
 		Set<Entry<String, String>> entrySet = map.entrySet();
 		for(Entry<String, String> entry : entrySet) {
@@ -47,6 +47,7 @@ public class TestGameBizImpl {
 	}
 
 	@Test
+    @Ignore
 	public void testWriteToFile() {
 		Map<String, String> en2cnMap = biz.en2cn();
 		Map<String, String> backupMap = new HashMap<String, String>(en2cnMap);
@@ -68,13 +69,13 @@ public class TestGameBizImpl {
 	}
 
 	@Test
+    @Ignore
 	public void testReadFromFile() {
 		
 		try {
 			Map<String, String> history = biz.readFromFile("en2cn_history1.dic");
 			iterateMap(history);
 		} catch (NoHistoryException e) {
-			// TODO Auto-generated catch block
 //			e.printStackTrace();
 			System.out.println(e.getMessage()+"  => "+e.getHistoryFile());
 		}

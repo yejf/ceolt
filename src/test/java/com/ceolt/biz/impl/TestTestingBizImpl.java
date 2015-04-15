@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.ceolt.biz.ITestingBiz;
@@ -35,6 +36,7 @@ public class TestTestingBizImpl {
 	}
 
 	@Test
+    @Ignore
 	public void testSaveTestRecord() {
 		List<BaseTerm> datas = biz.getTestingData(20);
 		Date d = DateUtil.getCurrentDate();
@@ -47,6 +49,7 @@ public class TestTestingBizImpl {
 	}
 
 	@Test
+    @Ignore
 	public void testReviewTestRecord() {
 		try {
 			List<TestRecord> records = biz.reviewTestRecord();
@@ -56,7 +59,6 @@ public class TestTestingBizImpl {
 			}
 		} catch (NoTestRecordException e) {
 			System.out.println(e.getMessage());
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

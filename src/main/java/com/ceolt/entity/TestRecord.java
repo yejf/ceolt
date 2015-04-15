@@ -47,7 +47,6 @@ public class TestRecord implements Serializable, Comparable<TestRecord> {
 	}
 
 	public TestRecord() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public TestRecord(List<BaseTerm> datas, Date testDate) {
@@ -132,7 +131,6 @@ public class TestRecord implements Serializable, Comparable<TestRecord> {
 	 * 按测试时间降序排序
 	 */
 	public int compareTo(TestRecord o) {
-		// TODO Auto-generated method stub
 		return o.testDate.compareTo(testDate);
 	}
 }

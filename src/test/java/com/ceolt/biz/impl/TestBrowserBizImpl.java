@@ -9,16 +9,16 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.ceolt.biz.IBroswerBiz;
+import com.ceolt.biz.IBrowserBiz;
 import com.ceolt.entity.Word;
 
-public class TestBroswerBizImpl {
+public class TestBrowserBizImpl {
 	
-	private IBroswerBiz biz;
+	private IBrowserBiz biz;
 	
 	@Before
 	public void init(){
-		this.biz = new BroswerBizImpl();
+		this.biz = new BrowserBizImpl();
 	}
 
 	@Test

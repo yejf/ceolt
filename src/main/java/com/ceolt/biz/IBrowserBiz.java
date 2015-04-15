@@ -15,7 +15,7 @@ import com.ceolt.entity.Word;
  * @version jdk1.6
  *
  */
-public interface IBroswerBiz {
+public interface IBrowserBiz {
 
 	/********************************
 	 * 获取所有 单词，此处的实现会选用 TreeSet, 以保证按首字母排序

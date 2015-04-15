@@ -56,7 +56,6 @@ public class BaseTermDaoDBImpl implements IBaseTermDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JdbcUtil.release(conn, stmt, rs);
@@ -94,7 +93,6 @@ public class BaseTermDaoDBImpl implements IBaseTermDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JdbcUtil.release(conn, stmt, rs);
@@ -107,7 +105,6 @@ public class BaseTermDaoDBImpl implements IBaseTermDao {
 	 * @param words
 	 */
 	public void saveWords(Set<Word> words) {
-		// TODO Auto-generated method stub
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int count = 0;
@@ -153,7 +150,6 @@ public class BaseTermDaoDBImpl implements IBaseTermDao {
 	 * @param vocabularies
 	 */
 	public void saveVocabularies(Set<Vocabulary> vocabularies) {
-		// TODO Auto-generated method stub
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int count = 0;

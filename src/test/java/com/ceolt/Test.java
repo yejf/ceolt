@@ -12,7 +12,6 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		String path = "datas/ce-vocabulary.dat";
 		File file = new File(path);
 		File outFile = new File("datas/temp.dat");
@@ -44,7 +43,6 @@ public class Test {
 				br.close();
 				out.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

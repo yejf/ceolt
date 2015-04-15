@@ -43,7 +43,6 @@ public class GameBizImpl implements IGameBiz {
 	 * @return 
 	 */
 	public Map<String, String> en2cn() {
-		// TODO Auto-generated method stub
 		//1.创建一个集合，来存放所有的单词和词汇组成的　键值对
 		Map<String, String> en2cnMap = new HashMap<String, String>();
 		//2.通过dao 获取所有的单词数据
@@ -72,7 +71,6 @@ public class GameBizImpl implements IGameBiz {
 	 * @return
 	 */
 	public Map<String, String> cn2en() {
-		// TODO Auto-generated method stub
 		//1. 创建一个Map来存放数据
 		Map<String, String> cn2enMap = new HashMap<String, String>();
 		//2. 通过Dao获取所有的单词数据
@@ -98,7 +96,6 @@ public class GameBizImpl implements IGameBiz {
 	 * @param path　持久化的文件路径
 	 */
 	public void writeToFile(Map<String, String> map, String path) {
-		// TODO Auto-generated method stub
 		File historyDir = new File(HISTROY_DIR);
 		if(!historyDir.exists()) {
 			//如果不存在此目录，则创建
@@ -122,7 +119,6 @@ public class GameBizImpl implements IGameBiz {
 				try {
 					oos.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -135,7 +131,6 @@ public class GameBizImpl implements IGameBiz {
 	 * @param path 文件所在的位置
 	 */
 	public Map<String, String> readFromFile(String path)  throws NoHistoryException {
-		// TODO Auto-generated method stub
 		File historyDir = new File(HISTROY_DIR);
 		if(!historyDir.exists()) {
 			throw new NoHistoryException("无历史记录", historyDir.getAbsolutePath());
@@ -161,7 +156,6 @@ public class GameBizImpl implements IGameBiz {
 				try {
 					ois.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

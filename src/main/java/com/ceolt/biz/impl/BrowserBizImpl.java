@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.ceolt.biz.IBroswerBiz;
+import com.ceolt.biz.IBrowserBiz;
 import com.ceolt.dao.IBaseTermDao;
 import com.ceolt.entity.Vocabulary;
 import com.ceolt.entity.Word;
@@ -19,11 +19,11 @@ import com.ceolt.factory.DaoFactory;
  * @version jdk1.6
  *
  */
-public class BroswerBizImpl implements IBroswerBiz {
+public class BrowserBizImpl implements IBrowserBiz {
 
 	private IBaseTermDao dao ;
 	
-	public BroswerBizImpl(){
+	public BrowserBizImpl(){
 		this.dao = DaoFactory.getDao();
 	}
 	
@@ -31,12 +31,10 @@ public class BroswerBizImpl implements IBroswerBiz {
 	 * 获取所有的单词
 	 */
 	public Set<Word> getAllWords() {
-		// TODO Auto-generated method stub
 		return dao.loadWords();
 	}
 
 	public Set<Vocabulary> getAllVocabularies() {
-		// TODO Auto-generated method stub
 		return dao.loadVocabularies();
 	}
 
