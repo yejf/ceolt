@@ -26,7 +26,7 @@ public class TestBaseTermDaoDBImpl {
 	
 	@Before
 	public void init(){
-		this.dao = new BaseTermDaoDBImpl();
+		this.dao = new BaseTermDaoFileImpl();
 	}
 
 	@Test

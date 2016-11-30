@@ -24,7 +24,6 @@ import com.ceolt.entity.Vocabulary;
 import com.ceolt.entity.Word;
 import com.ceolt.exception.NoHistoryException;
 import com.ceolt.exception.NoTestRecordException;
-import com.ceolt.util.DBConfig;
 import com.ceolt.util.DateUtil;
 import com.ceolt.util.PageBean;
 import com.ceolt.util.StringUtil;
@@ -36,10 +35,10 @@ public class ClientMain {
 
     //通过静态代码块来加载配置信息
     static{
-        String pageSize = DBConfig.getInstance().getValue("page.size");
-        if(pageSize != null){
-            PAGE_SIZE = Integer.parseInt(pageSize);
-        }
+//        String pageSize = DBConfig.getInstance().getValue("page.size");
+//        if(pageSize != null){
+//            PAGE_SIZE = Integer.parseInt(pageSize);
+//        }
         //加载其它的配置[如果将来有的话]
         //....
     }
